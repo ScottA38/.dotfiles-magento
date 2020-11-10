@@ -1,0 +1,7 @@
+[user]
+	email = scott.a@borngroup.com
+	name = Scott Anderson
+[alias]
+	pullff = !git pull --ff-only $1 $2 || git pull --no-ff $1 $2 && :
+	currbr = "!git rev-parse --abbrev-ref HEAD";
+	#currbr = branch --show-current
