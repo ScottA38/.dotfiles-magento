@@ -5,6 +5,8 @@ export DOCK_DIR="/var/www/html/docker-magento2"
 
 alias cl="clear;"
 
+alias showpath="echo $PATH | tr ':' '\n'";
+
 function wgrep () {
 	grep -A 3 -B 3 $1;
 }

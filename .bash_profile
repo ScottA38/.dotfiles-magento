@@ -4,6 +4,18 @@ function wgrep () {
 	grep -A 3 -B 3 $1;
 }
 
+function firstfile () {
+	find $1 -name $2 | head -n 1
+}
+
+function catfirst () {
+	cat $(find $1 -name $2 | head -n 2)
+}
+
 if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
+
+#add magento bin to PATH
+echo $PATH | grep -q  "$MAG_DIR/bin" || export PATH=$PATH:"$MAG_DIR/bin";
+cd $MAG_DIR
