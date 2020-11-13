@@ -7,10 +7,6 @@ alias cl="clear;"
 
 alias showpath="echo $PATH | tr ':' '\n'";
 
-function wgrep () {
-	grep -A 3 -B 3 $1;
-}
-
 #MacOS polyfills
 alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
@@ -21,6 +17,8 @@ alias mag_hard_clr="pushd $MAG_DIR; rm -rfv generated/code pub/static/adminhtml/
 alias mag_clear="rm -rfv "$MAG_DIR"/var/generation/*; rm -rfv "$MAG_DIR"var/cache/*"
 
 alias cf="$MAG_DIR/bin/magento c:fl;"
+
+alias discache="bin/magento c:dis full_page block_html layout;"
 
 #alias deploy_theme="npm run lint:fix && gulp scss && cf"
 
