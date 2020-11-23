@@ -3,6 +3,8 @@ export DOCK_DIR="/var/www/html/docker-magento2"
 export NGINX_ERR="/var/log/nginx/error.log"
 export MAG_ERR="/var/www/html/burpee/var/log/system.log"
 export XDEBUG_LOG="/var/log/xdebug/xdebug.log"
+export PHP_FPM_CONF="/etc/php/7.3/fpm/php.ini"
+export PHP_CLI_CONF="/etc/php/7.3/cli/php.ini"
 
 #add magento bin to PATH
 echo $PATH | grep -q  "$MAG_DIR/bin" || export PATH=$PATH:"$MAG_DIR/bin";
