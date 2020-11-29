@@ -24,6 +24,8 @@ alias discache="bin/magento c:dis full_page block_html layout;"
 
 alias disable_caches="bin/magento c:dis full_page block_html layout;"
 
+alias refresh="npx grunt refresh";
+
 #git shortcuts
 
 alias currbr="git branch --show-current"

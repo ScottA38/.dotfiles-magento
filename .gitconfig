@@ -4,4 +4,4 @@
 [alias]
 	pullff = !git pull --ff-only $1 $2 || git pull --no-ff $1 $2 && :
 	currbr = "!git rev-parse --abbrev-ref HEAD";
-	#currbr = branch --show-current
+	diffnames = !git diff --name-only $1
