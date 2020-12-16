@@ -1,0 +1,12 @@
+pub/
+vendor/
+dev/
+var/
+lib/
+bin/
+setup/
+phpserver/
+update/
+.docker/
+.github/
+.magento/

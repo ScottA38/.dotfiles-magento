@@ -1,0 +1,11 @@
+{
+    "extends": "@modyqyw/stylelint-config/less",
+    "rules": {
+        "indentation": 4,
+        "order/properties-order": null,
+        "string-quotes": "single",
+        "selector-max-compound-selectors": null,
+        "selector-max-class": null,
+        "selector-max-combinators": null
+    }
+}

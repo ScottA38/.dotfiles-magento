@@ -10,19 +10,16 @@ export PHP_LOG="/tmp/php-error.log"
 #add magento bin to PATH
 echo $PATH | grep -q  "$MAG_DIR/bin" || export PATH=$PATH:"$MAG_DIR/bin";
 
-
-export PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
-
 function wgrep () {
 	grep -nA 3 -B 3 $1;
 }
 
 function findfirst () {
-	find $1 -name $2 &2> /dev/null | head -n 1
+	find $1 -name $2 | head -n 1
 }
 
 function catfirst () {
-	cat $(find $1 -name $2 &2> /dev/null | head -n 2)
+	cat $(find $1 -name $2 | head -n 2)
 }
 
 function t30 {
@@ -37,9 +34,15 @@ if [ -f ~/.bashrc ]; then
   . ~/.bashrc
 fi
 
+if [ ! -z $SSH_TTY ] 
+then
+	$in_ssh="--=";
+fi
+export PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\] $in_ssh ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+
 
 #local setup
 [ ! -f $PHP_LOG ] && touch $PHP_LOG
 chmod 777 $PHP_LOG
 cd $MAG_DIR
-cl
+clear
