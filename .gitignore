@@ -1,10 +1,10 @@
 #.dotfiles-magento repo
-
 /*
 
 !/.gitignore
 !/.gitconfig
 !/.bash_profile
 !/.bash_aliases
+!.scandipwa.bash_aliases
 !m2-configs/
 !githooks/

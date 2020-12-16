@@ -46,5 +46,6 @@ alias rmdockerimgs='docker rm -vf $(docker ps -a -q)'
 
 alias startvarnish='docker-compose exec -u root varnish bash service varnish start'
 
-#success message
-echo "aliases loaded successfully!"
+if [ -f ~/.scandipwa.bash_aliases ]; then
+	. ~/.scandipwa.bash_aliases;
+fi
