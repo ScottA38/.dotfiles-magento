@@ -49,3 +49,4 @@ alias startvarnish='docker-compose exec -u root varnish bash service varnish sta
 if [ -f ~/.scandipwa.bash_aliases ]; then
 	. ~/.scandipwa.bash_aliases;
 fi
+export COMPOSER_AUTH='{"http-basic":{"repo.magento.com": {"username": "a6c89664b6543ccc7a5fd17824dee1dd", "password": "8455c1cfc1e37aad319ba814a5f7bc0f"}}}'

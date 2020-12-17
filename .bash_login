@@ -1,0 +1,6 @@
+#!/bin/sh
+
+if [ ! -f $PHP_LOG ]; then 
+	touch $PHP_LOG && chmod 777 $PHP_LOG
+fi
+cd $MAG_DIR
