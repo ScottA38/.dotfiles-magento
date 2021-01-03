@@ -1,0 +1,23 @@
+#!/bin/bash
+
+magento_binary=(bin/magento)
+
+if [ ! -x bin/magento ]; then
+    echo -e "Magento binary not successfully supplied to mag_chain.\nCheck pwd: ($(pwd))" >&2;
+    exit 1
+fi
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: $0 magento-command [magento-command...]" >&2
+    exit 1
+fi
+
+for subcommand in "$@"; do
+    echo "mchain: running $subcommand";
+    xargs -o "${magento_binary[@]}" <<<"$subcommand" || {
+        status=$?
+        echo "Remainder of chain cancelled" >&2
+        exit $status
+    }
+    echo -e "\n";
+done

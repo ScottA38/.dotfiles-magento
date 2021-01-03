@@ -1,7 +1,10 @@
 #!/bin/bash
 
-#add magento bin to PATH
+#add magento bin to PATH (redundant checks? In startup script)
 echo $PATH | grep -q  "$MAG_DIR/bin" || export PATH=$PATH:"$MAG_DIR/bin";
+
+#add custom scripts to PATH
+echo $PATH | grep -q  "~/.scripts" || export PATH=$PATH:"~/.scripts";
 
 if [ ! -f $PHP_LOG ]; then 
 	touch $PHP_LOG && chmod 777 $PHP_LOG
@@ -9,3 +12,5 @@ fi
 cd $MAG_DIR;
 
 cowsay -e "€€" -T "\/" "Welcome, sire."
+sleep 1
+clear
