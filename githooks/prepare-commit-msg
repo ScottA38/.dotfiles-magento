@@ -4,10 +4,9 @@ COMMIT_MSG_FILE=$1
 COMMIT_SOURCE=$2
 SHA1=$3
 
-if [ "${COMMIT_SOURCE}" = merge ];then
-    exit 0
+if [ x = x${2} ]; then
+	echo "$(git branch --show-current)" > "$1"
+	echo "" >> "$1"
+	echo -e "\t-" >> "$1"
 fi
 
-echo "$(git branch --show-current)" > "$1"
-echo "" >> "$1"
-echo -e "\t-" >> "$1"
