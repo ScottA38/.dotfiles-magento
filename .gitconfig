@@ -4,4 +4,5 @@
 [alias]
 	pullff = !git pull --ff-only $1 $2 || git pull --no-ff $1 $2 && :
 	currbr = "!git rev-parse --abbrev-ref HEAD";
-	diffnames = !git diff --name-only $1
+	diffnames = !git diff --name-only $1;
+	stgdiff=diff --cached;
