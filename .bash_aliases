@@ -7,6 +7,10 @@ alias cl="clear;"
 
 alias showpath="echo $PATH | tr ':' '\n'";
 
+#ssh shortcuts
+
+alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
+
 #MacOS polyfills
 alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
