@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+# args
+# $1 - filename
+# $2 - dbname
+
+#script to take a file with table names listed as arguments and delete them from a database
+while read line; 
+do 
+	mysql -A $2 --init-command="SET SESSION FOREIGN_KEY_CHECKS=0;" -e "DROP TABLE $line"; 
+done < $1

@@ -1,0 +1,18 @@
+#!/usr/local/bin/fontforge
+import os
+
+if (len(sys.argv[1])):
+	os.chdir(sys.argv[1])
+
+surrogate = fontforge.open("/var/www/html/jlr_cc/lib/internal/LinLibertineFont/LinLibertine_Re-4.4.1.ttf")
+surrogate.selection.select(0x20, ("unicode", ))
+surrogate.copy()
+
+for i in os.listdir():
+	fileext = os.path.splitext(i)[1]
+	if (fileext == ".ttf"):
+		font = fontforge.open(i)
+		font.selection.select(0x20, ("unicode", ))
+		font.paste()
+
+		font.generate(i)

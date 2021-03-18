@@ -1,0 +1,14 @@
+#!/usr/local/bin/fontforge
+import os
+
+if (len(sys.argv[1])):
+	os.chdir(sys.argv[1])
+
+for i in os.listdir():
+	fileext = os.path.splitext(i)[1]
+	if (fileext == ".ttf"):
+		otf_file = os.path.splitext(i)[0] + '.otf'
+		font = fontforge.open(i)
+		font.mergeFonts(otf_file)		
+
+		font.generate(i)

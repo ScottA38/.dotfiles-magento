@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+# Script to tar all files in the JLRCC project for a project
+# Params:
+# $1 -> file name
+# $2 -> save directory
+
+set -e;
+
+file app/etc/env.php;
+
+dir="$(echo $2 | sed 's![^/]$!&/!')";
+
+file_name="$1_$(date +%Y_%m_%d).tar.gz";
+
+tar -cvzf "$dir$file_name" app/code app/design app/i18n/jlr index_jlr.php index.php pub/index.php

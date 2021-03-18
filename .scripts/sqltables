@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+#script to get all table names from specified mysql database
+# $1: mysql username
+# $2: mysql database name
+
+mysql -A -u $1 -p $2 -e "SHOW TABLES" | awk "FNR==1{next} {print $2, FNR}"
