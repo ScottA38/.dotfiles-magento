@@ -24,6 +24,8 @@ alias cf="$MAG_DIR/bin/magento c:fl;"
 
 alias discache="bin/magento c:dis full_page block_html layout;"
 
+alias n98-magerun-2="php7.3 /usr/local/bin/n98-magerun2.phar"
+
 #alias deploy_theme="npm run lint:fix && gulp scss && cf"
 
 alias disable_caches="bin/magento c:dis full_page block_html layout;"
