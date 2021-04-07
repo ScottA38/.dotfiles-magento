@@ -9,7 +9,7 @@ echo $PATH | grep -q  "~/.scripts" || export PATH=$PATH:"~/.scripts";
 if [ ! -f $PHP_LOG ]; then 
 	touch $PHP_LOG && chmod 777 $PHP_LOG
 fi
-cd $MAG_DIR;
+cd /var/www/html;
 
 cowsay -e "€€" -T "\/" "Welcome, sire."
 sleep 1
