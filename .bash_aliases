@@ -52,7 +52,12 @@ alias rmdockerimgs='docker rm -vf $(docker ps -a -q)'
 
 alias startvarnish='docker-compose exec -u root varnish bash service varnish start'
 
+# gcloud SDK shortcuts
+
+alias gswitch='gcloud config configurations activate'
+
+alias glinstances='gcloud compute instances list'
+
 if [ -f ~/.scandipwa.bash_aliases ]; then
 	. ~/.scandipwa.bash_aliases;
 fi
-export COMPOSER_AUTH='{"http-basic":{"repo.magento.com": {"username": "a6c89664b6543ccc7a5fd17824dee1dd", "password": "8455c1cfc1e37aad319ba814a5f7bc0f"}}}'

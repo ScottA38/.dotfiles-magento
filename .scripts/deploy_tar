@@ -4,6 +4,7 @@
 # Params:
 # $1 -> file name
 # $2 -> save directory
+# $# > 2 -> [optional] filepaths to add to tar archive
 
 set -e;
 
@@ -11,6 +12,7 @@ dir="$(echo $2 | sed 's![^/]$!&/!')";
 
 file_name="$1_$(date +%Y_%m_%d).tar.gz";
 
+#  move the start of arguments array 2 places to the right (ignore first 2 positional params)
 shift 2;
 
 if [ "$#" -gt 0 ]; then

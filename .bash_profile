@@ -35,6 +35,7 @@ if [ -f ~/.bash_vars ]; then
 fi
 
 export PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\] 🏠 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+export COMPOSER_AUTH='{"http-basic":{"repo.magento.com": {"username": "a6c89664b6543ccc7a5fd17824dee1dd", "password": "8455c1cfc1e37aad319ba814a5f7bc0f"}}}'
 
 
 if [ -z $initial_login ]
