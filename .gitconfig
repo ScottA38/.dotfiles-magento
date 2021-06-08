@@ -1,5 +1,5 @@
 [user]
-	email = scott.a@borngroup.com
+	email = scott.anderson@scandiweb.com
 	name = Scott Anderson
 [alias]
 	pullff = !git pull --ff-only $1 $2 || git pull --no-ff $1 $2 && :

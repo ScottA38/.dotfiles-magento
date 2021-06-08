@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+_gswitch_completions()
+{
+	COMPREPLY=($(compgen -W "$GCLOUD_CONFIGS" "${COMP_WORDS[1]}"))
+}
+
+complete -F _gswitch_completions gswitch

@@ -21,5 +21,3 @@ for subcommand in "$@"; do
     }
     echo -e "\n";
 done
-
-notify-send "Mchain has finished command chain $@"

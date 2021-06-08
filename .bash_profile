@@ -6,10 +6,6 @@ export PHP_FPM_CONF="/etc/php/7.3/fpm/php.ini"
 export PHP_CLI_CONF="/etc/php/7.3/cli/php.ini"
 export PHP_LOG="/tmp/php-error.log"
 
-function wgrep () {
-	grep -nA 3 -B 3 $1;
-}
-
 function findfirst () {
 	find $1 -name $2 | head -n 1
 }
@@ -18,13 +14,28 @@ function catfirst () {
 	cat $(find $1 -name $2 | head -n 2)
 }
 
-function t30 {
-	tail -fn 30 $1;
-}
-
 function fac {
 	git fetch && git checkout $1;
 }
+
+function gswitch {
+	if [ ! -z $1 ]; then
+		for CONFIG in $GCLOUD_CONFIGS
+		do
+        		if [ $CONFIG == $1 ]; then
+                		export CLOUDSDK_ACTIVE_CONFIG_NAME=$1;
+				return
+        		fi
+		done
+	fi
+
+	echo "'$1' is not a valid config name!";
+}
+
+function get_versions {
+	grep -Proi --include="*.php" "1\.\d+\.\d+" $1 |  cut -d ":" -f2 
+}
+
 
 #if [ -f ~/.bashrc ]; then
 #  . ~/.bashrc
@@ -34,9 +45,8 @@ if [ -f ~/.bash_vars ]; then
 	. ~/.bash_vars
 fi
 
-export PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\] 🏠 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ "
+export 	PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\] 🏠 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\](\$CLOUDSDK_ACTIVE_CONFIG_NAME)\n \$ "
 export COMPOSER_AUTH='{"http-basic":{"repo.magento.com": {"username": "a6c89664b6543ccc7a5fd17824dee1dd", "password": "8455c1cfc1e37aad319ba814a5f7bc0f"}}}'
-
 
 if [ -z $initial_login ]
 then

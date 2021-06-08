@@ -5,11 +5,19 @@ export DOCK_DIR="/var/www/html/docker-magento2"
 
 alias cl="clear;"
 
-alias showpath="echo $PATH | tr ':' '\n'";
+alias showpath="echo $PATH | tr ':' '\n'"
+
+alias t30="tail -fn 30"
+
+alias wgrep="grep -nA 3 -B 3"
 
 #ssh shortcuts
 
 alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
+
+#python tool shortcuts
+
+alias json-pretty="echo `xsel --clipboard --output` | python3 -m json.tool"
 
 #MacOS polyfills
 alias pbcopy="xsel --clipboard --input"
@@ -53,8 +61,6 @@ alias rmdockerimgs='docker rm -vf $(docker ps -a -q)'
 alias startvarnish='docker-compose exec -u root varnish bash service varnish start'
 
 # gcloud SDK shortcuts
-
-alias gswitch='gcloud config configurations activate'
 
 alias glinstances='gcloud compute instances list'
 
