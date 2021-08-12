@@ -8,3 +8,6 @@
 	fetchbr = !git fetch && git checkout $1
 	stgdiff=diff --cached
 	stashall=stash --include-untracked
+	chp=cherry-pick
+	doge=log --decorate --oneline --graph --all
+

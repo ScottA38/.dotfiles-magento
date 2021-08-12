@@ -11,6 +11,10 @@ alias t30="tail -fn 30"
 
 alias wgrep="grep -nA 3 -B 3"
 
+#mysql shortcuts
+
+alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g'"
+
 #ssh shortcuts
 
 alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
@@ -44,11 +48,12 @@ alias refresh="npx grunt refresh";
 
 alias currbr="git branch --show-current"
 
-alias doge="git log --decorate --oneline --graph --all;"
-
 alias lastmsg="git log -1 --pretty=%B;"
 
 alias gs="git status"
+
+alias branch-history="git reflog | grep -o 'checkout: moving from .* to ' | sed -e 's/checkout: moving from //' -e 's/ to $//' | head -20"
+
 
 #docker shortcuts
 
