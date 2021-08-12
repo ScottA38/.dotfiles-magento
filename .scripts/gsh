@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+//script to ssh into appropriate env according to active config
+$servername = "localhost";
+$username = "magento";
+$password = "magento";
+$db = "bash_config";
+
+$currentConfig = getenv('CLOUDSDK_ACTIVE_CONFIG_NAME');
+if (!$currentConfig) {
+	die("Unable to find active gcloud config name from env");
+}
+
+$conn = new mysqli($servername, $username, $password, $db);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$results = $conn->query("SELECT default_instance, ssh_flags FROM gcloud_instances WHERE config_name = '$currentConfig'");
+
+if (!$results) {
+	die("No row found for config name: $currentConfig");
+}
+
+$row = $results->fetch_assoc();
+
+//var_dump(implode(", ", $row));
+
+$instance = $row["default_instance"];
+$ssh_flags = explode(",", $row["ssh_flags"]);
+
+$cmd_kwds = $instance;
+
+
+foreach($ssh_flags as $flag) {
+	$cmd_kwds .= " --ssh-flag=\"$flag\"";
+}
+
+echo $cmd_kwds;
+?> 

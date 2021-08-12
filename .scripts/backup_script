@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+notify-send -t 150 'Automated backup running'
+
+if [ "$(id -u)" -ne 0 ]; then
+        notify-send -t 350 'Automated backup failed, script must be run as root!'
+        exit 1
+fi
+
+rsync --archive --recursive --relative --verbose --delete --perms --owner --group --one-file-system --links --max-size=1g --compress \
+ --exclude-from=/root/bkp/rsync_exclude_patterns  /etc/php /etc/mysql /etc/apt /etc/cron* /etc/firefox /etc/thunderbird /var /home/scandiweb ~/bkp/fs_backup
+dpkg --get-selections > ~/bkp/installed-packages.list
+sudo apt-key exportall >  ~/bkp/apt-keys
