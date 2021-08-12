@@ -18,5 +18,5 @@ shift 2;
 if [ "$#" -gt 0 ]; then
 	tar -cvzf "$dir$file_name" "$@";
 else
-	tar -cvzf "$dir$file_name" app/code app/design app/i18n/jlr index_jlr.php index.php pub/index.php var/tmp/stripe_config.secret.json
+	git archive --format tar.gz -o /tmp/`currbr`_$(date +%Y_%m_%d).tar.gz `currbr`
 fi
