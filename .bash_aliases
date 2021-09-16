@@ -11,6 +11,8 @@ alias t30="tail -fn 30"
 
 alias wgrep="grep -nA 3 -B 3"
 
+alias quote-words="sed 's/[^[:space:],]\+/\"&\"/g'"
+
 #mysql shortcuts
 
 alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g'"
@@ -21,26 +23,18 @@ alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
 
 #python tool shortcuts
 
-alias json-pretty="echo `xsel --clipboard --output` | python3 -m json.tool"
+alias py-json="xsel --clipboard --output | python3 -m json.tool"
 
 #MacOS polyfills
 alias pbcopy="xsel --clipboard --input"
 alias pbpaste="xsel --clipboard --output"
 
 #Magento-related shortcuts
-alias mag_hard_clr="pushd $MAG_DIR; rm -rfv generated/code pub/static/adminhtml/* pub/static/frontend/* pub/static/deployed_version.txt var/view_preprocessed/pub/* var/cache/* var/page_cache/*; popd"
-
 alias mag_clear="rm -rfv "$MAG_DIR"/var/generation/*; rm -rfv "$MAG_DIR"var/cache/*"
-
-alias cf="$MAG_DIR/bin/magento c:fl;"
-
-alias discache="bin/magento c:dis full_page block_html layout;"
 
 alias n98-magerun-2="php7.3 /usr/local/bin/n98-magerun2.phar"
 
 #alias deploy_theme="npm run lint:fix && gulp scss && cf"
-
-alias disable_caches="bin/magento c:dis full_page block_html layout;"
 
 alias refresh="npx grunt refresh";
 
@@ -53,7 +47,6 @@ alias lastmsg="git log -1 --pretty=%B;"
 alias gs="git status"
 
 alias branch-history="git reflog | grep -o 'checkout: moving from .* to ' | sed -e 's/checkout: moving from //' -e 's/ to $//' | head -20"
-
 
 #docker shortcuts
 

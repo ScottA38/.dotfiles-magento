@@ -18,5 +18,5 @@ shift 2;
 if [ "$#" -gt 0 ]; then
 	tar -cvzf "$dir$file_name" "$@";
 else
-	git archive --format tar.gz -o /tmp/`currbr`_$(date +%Y_%m_%d).tar.gz `currbr`
+	git archive --format tar.gz -o "$dir$file_name" HEAD
 fi
