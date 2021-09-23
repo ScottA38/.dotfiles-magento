@@ -5,7 +5,7 @@ function _xdbgmod_completions()
 	local opts;
 	local verss;
 	opts="en dis";
-	verss=`basename -a $(find /etc/php -maxdepth 1 -mindepth 1 -type d ) | xargs echo`
+	verss=`find /etc/php -maxdepth 1 -mindepth 1 -type d | xargs basename -a`
 	case $COMP_CWORD in
 		1)
 			COMPREPLY=( $(compgen -W "$opts" "${COMP_WORDS[COMP_CWORD]}"))

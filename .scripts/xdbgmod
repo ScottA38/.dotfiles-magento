@@ -6,15 +6,14 @@ ver=$2
 if [ $cmd != "en" -a $cmd != "dis" ]; then
 	echo "Did not get a valid command as 1st arg: 'en' or 'dis' are allowed";
 	exit 1;
-fi 
+fi
 
 path="/etc/php/$ver/mods-available/xdebug.ini"
-dis_path="$path.dis"
 
-if [ $cmd == "en" -a -f $dis_path ]; then
-	sudo mv $dis_path $path;
+if [ $cmd == "en" -a -f "$path.dis" ]; then
+	sudo mv $path{.dis,};
 	sudo systemctl restart "php$ver-fpm"
-elif [ -f $path ]; then
-	sudo mv $path $dis_path;
+elif [ $cmd == "dis" -a -f $path ]; then
+	sudo mv $path{,.dis};
 	sudo systemctl restart "php$ver-fpm"
 fi

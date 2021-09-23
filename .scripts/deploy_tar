@@ -16,7 +16,7 @@ file_name="$1_$(date +%Y_%m_%d).tar.gz";
 shift 2;
 
 if [ "$#" -gt 0 ]; then
-	tar -cvzf "$dir$file_name" "$@";
+	git archive --format tar.gz -o "$dir$file_name" HEAD "$@";
 else
 	git archive --format tar.gz -o "$dir$file_name" HEAD
 fi
