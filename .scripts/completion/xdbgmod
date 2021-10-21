@@ -18,5 +18,4 @@ function _xdbgmod_completions()
 	return 0;
 }
 
-echo "adding";
 complete -F _xdbgmod_completions xdbgmod;

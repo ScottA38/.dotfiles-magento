@@ -10,4 +10,5 @@
 	stashall=stash --include-untracked
 	chp=cherry-pick
 	doge=log --decorate --oneline --graph --all
+	rsthrd=reset --hard HEAD
 

@@ -1,6 +1,3 @@
-export MAG_DIR="/var/www/html/burpee"
-export DOCK_DIR="/var/www/html/docker-magento2"
-
 #general bash shortcuts
 
 alias cl="clear;"
@@ -33,6 +30,8 @@ alias pbpaste="xsel --clipboard --output"
 alias mag_clear="rm -rfv "$MAG_DIR"/var/generation/*; rm -rfv "$MAG_DIR"var/cache/*"
 
 alias n98-magerun-2="php7.3 /usr/local/bin/n98-magerun2.phar"
+
+alias killconsumers="kill $(ps aux | grep queue:consumers:start | awk '{print $2}' | xargs)"
 
 #alias deploy_theme="npm run lint:fix && gulp scss && cf"
 

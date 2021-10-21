@@ -6,10 +6,9 @@ re='^[0-9]+$';
 while IFS= read line; do
 	line="$(xargs <<< $line)";
 
-	if ! [[ line =~ re ]]
+	if ! [[ $line =~ $re ]]
 	then
 		line=$(sed 's/[^[:space:],]\+/\"&\"/g' <<< $line);
-		#line=$(echo $line | awk '{ printf("'%s'", $0);}');
 	fi
 	sql_array="$sql_array  $line"
 done

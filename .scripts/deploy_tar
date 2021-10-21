@@ -20,3 +20,5 @@ if [ "$#" -gt 0 ]; then
 else
 	git archive --format tar.gz -o "$dir$file_name" HEAD
 fi
+
+echo "$dir$file_name"

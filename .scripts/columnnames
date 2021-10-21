@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+SCHEMA=$1;
+# 'TABLE' argument should be in sql string pattern matching format
+TABLE=$2;
+COLUMNS=$3;
+
+mysql -BAe "SELECT COLUMN_NAME FROM COLUMNS WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$TABLE' AND COLUMN_NAME LIKE '$COLUMNS';" information_schema | awk 'FNR > 1'

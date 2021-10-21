@@ -41,8 +41,8 @@ function get_versions {
 #  . ~/.bashrc
 #fi
 
-if [ -f ~/.bash_vars ]; then
-	. ~/.bash_vars
+if [ -f ~/.vars ]; then
+	. ~/.vars
 fi
 
 export 	PS1="\D{%H:%M:%S} \[\e]0;\u@\h: \w\a\] 🏠 ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\](\$CLOUDSDK_ACTIVE_CONFIG_NAME)\n \$ "
@@ -51,6 +51,6 @@ export COMPOSER_AUTH='{"http-basic":{"repo.magento.com": {"username": "a6c89664b
 if [ -z $initial_login ]
 then
 	export initial_login=1;
-	. ~/.bash_startup;
+	. ~/.startup;
 fi
 
