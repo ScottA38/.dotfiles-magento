@@ -17,6 +17,7 @@ alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g'"
 #ssh shortcuts
 
 alias ssh-hosts="grep -P \"^Host ([^*]+)$\" $HOME/.ssh/config | sed 's/Host //'"
+alias dev-db-tunnel="ssh summit-dev -fNL 3315:23.251.136.82:3306"
 
 #python tool shortcuts
 
@@ -31,7 +32,7 @@ alias mag_clear="rm -rfv "$MAG_DIR"/var/generation/*; rm -rfv "$MAG_DIR"var/cach
 
 alias n98-magerun-2="php7.3 /usr/local/bin/n98-magerun2.phar"
 
-alias killconsumers="kill $(ps aux | grep queue:consumers:start | awk '{print $2}' | xargs)"
+alias killconsumers="pkill -f pkill queue\:consumers\:start"
 
 #alias deploy_theme="npm run lint:fix && gulp scss && cf"
 
@@ -44,8 +45,6 @@ alias currbr="git branch --show-current"
 alias lastmsg="git log -1 --pretty=%B;"
 
 alias gs="git status"
-
-alias branch-history="git reflog | grep -o 'checkout: moving from .* to ' | sed -e 's/checkout: moving from //' -e 's/ to $//' | head -20"
 
 #docker shortcuts
 
@@ -64,3 +63,6 @@ alias glinstances='gcloud compute instances list'
 if [ -f ~/.scandipwa.bash_aliases ]; then
 	. ~/.scandipwa.bash_aliases;
 fi
+
+#stupid overrides
+alias magerun="/usr/local/bin/n98-magerun2-3.2.0.phar"
