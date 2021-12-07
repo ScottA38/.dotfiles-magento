@@ -10,4 +10,6 @@
 !m2-configs/
 !githooks/
 !.scripts/
+.scripts/submodules
+.scripts/.zcompdump
 !.groovyscripts/
