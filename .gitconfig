@@ -12,3 +12,5 @@
 	doge=log --decorate --oneline --graph --all
 	rsthrd=reset --hard HEAD
 
+[core]
+	autocrlf = false

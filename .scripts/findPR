@@ -1,0 +1,35 @@
+#!/usr/bin/env zsh
+
+function parseSymbol {
+	local symbol=$1
+	read line;
+	echo $line;
+	
+	if [[ ${line::1} == $symbol ]]; then
+		return 1;
+	fi
+
+	return 0;
+}
+
+# The branch or commit ref you wish to run rev-list from
+ref=$1;
+phrase=$2;
+
+while IFS= read -r hash
+do
+	# Check if commit contains required string
+	while read -r line
+	do
+		color="white";
+		echo $line | parseSymbol + && color="green";
+		echo $line | parseSymbol - && color="red";
+		print -P "%F{$color}$line%f";
+	done <<< $(git diff $hash~1 $hash | grep $phrase);
+
+	git diff $hash~1 $hash | grep -q phrase;
+	if [[ $? -eq 0 ]]; then
+		echo $hash;
+	fi
+# input all commit shas where message matches Bitbucket PR merge format
+done <<< $(git log --pretty=format:"%h" --grep="(pull request #" $ref)
