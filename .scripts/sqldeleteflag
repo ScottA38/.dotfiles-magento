@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+db=$1;
+flag_pattern=$2;
+env=${3:-local};
+
+mysql --defaults-group-suffix=$env -Ae "DELETE FROM flag WHERE flag_code LIKE '$2';" $db;

@@ -36,13 +36,6 @@ function get_versions {
 	grep -Proi --include="*.php" "1\.\d+\.\d+" $1 |  cut -d ":" -f2 
 }
 
-function branch-history {
-	while read -r line
-	do
-		print -P "%F{#${openssl rand -hex 3)}$line%f";
-	done <<< git reflog | grep -o 'checkout: moving from .* to ' | sed -e 's/checkout: moving from //' -e 's/ to $//' | head -20
-}
-
 
 #if [ -f ~/.bashrc ]; then
 #  . ~/.bashrc

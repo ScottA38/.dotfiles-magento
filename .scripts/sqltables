@@ -1,7 +1,10 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 #script to get all table names from specified mysql database
-# $1: mysql username
-# $2: mysql database name
+# $1: mysql database name
+# $2: [optional] mysql env name (.my.cnf). Default = local
 
-mysql -A -u $1 -p $2 -e "SHOW TABLES" | awk "FNR==1{next} {print $2, FNR}"
+db=$1;
+mysqlenv=${2:-local};
+
+mysql --defaults-group-suffix=$mysqlenv -BAe "SHOW TABLES" $db | awk 'FNR==1{next} {print FNR, $1}'

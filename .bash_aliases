@@ -8,11 +8,19 @@ alias t30="tail -fn 30"
 
 alias wgrep="grep -nA 3 -B 3"
 
+alias cpv="rsync --progress"
+
 alias quote-words="sed 's/[^[:space:],]\+/\"&\"/g'"
+
+alias pew="gunzip"
 
 #mysql shortcuts
 
 alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g'"
+
+alias mysqllocal="mysql --defaults-group-suffix='local'"
+alias mysqldev="mysql --defaults-group-suffix='dev'"
+alias mysqlstg="mysql --defaults-group-suffix='stg'"
 
 #ssh shortcuts
 
