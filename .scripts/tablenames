@@ -4,4 +4,12 @@ SCHEMA=$1;
 # 'TABLE' argument should be in sql string pattern matching format
 TABLE=$2;
 
-mysql -BAe "SELECT TABLE_NAME FROM tables WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$TABLE';" information_schema | awk 'FNR > 1'
+shift;
+
+while (( "$#" ))
+do
+	query="SELECT TABLE_NAME FROM tables WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$1';"
+	echo $query
+	mysql --defaults-group-suffix=local -BAe "$query" information_schema | awk 'FNR > 1'
+	shift;
+done

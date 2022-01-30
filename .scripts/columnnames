@@ -1,8 +1,16 @@
 #!/usr/bin/env bash
 
 SCHEMA=$1;
-# 'TABLE' argument should be in sql string pattern matching format
+# 'TABLE' argument should be a verbatim sql table name within the schema
 TABLE=$2;
-COLUMNS=$3;
 
-mysql -BAe "SELECT COLUMN_NAME FROM COLUMNS WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$TABLE' AND COLUMN_NAME LIKE '$COLUMNS';" information_schema | awk 'FNR > 1'
+shift;
+
+while (( "$#" ));
+do
+	query="SELECT COLUMN_NAME FROM COLUMNS WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$TABLE' AND COLUMN_NAME LIKE '$1';"
+	echo $query;
+	mysql --defaults-group-suffix=local -Be "SELECT COLUMN_NAME FROM COLUMNS WHERE TABLE_SCHEMA = '$SCHEMA' AND TABLE_NAME LIKE '$TABLE' AND COLUMN_NAME LIKE '$1';" information_schema | awk 'FNR > 1';
+
+	shift;
+done

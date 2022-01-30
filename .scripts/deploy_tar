@@ -1,24 +1,50 @@
 #!/usr/bin/bash
 
-# Script to tar all files in the JLRCC project for a project
-# Params:
-# $1 -> file name
-# $2 -> save directory
-# $# > 2 -> [optional] filepaths to add to tar archive
+# Script to tar all tracked files in a git directory
 
 set -e;
 
-dir="$(echo $2 | sed 's![^/]$!&/!')";
+usage() {
+	echo "Usage: [-h] [-d <string>] [-f <string>] [[file_name]...]" 1>&2;
+	cat <<EOF
+-d: Directory base path. Must be existing valid directory. Defaults to `/tmp`
+-f: Base filename for archive file. Filename will be "<filename_parameter>_YYYY_mm_dd.tar.gz". Default is current git branch name
+EOF
 
-file_name="$1_$(date +%Y_%m_%d).tar.gz";
+	exit 1;
+}
 
-#  move the start of arguments array 2 places to the right (ignore first 2 positional params)
-shift 2;
+while getopts "hf:d:" o; do
+    case "${o}" in
+        f)
+            filename=${OPTARG}
+            ;;
+        d)
+            dir=${OPTARG}
+            ;;
+        h)
+            usage
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+shift $((OPTIND-1))
+
+current_branch=$(git symbolic-ref --short -q HEAD)
+filename=${filename:-$current_branch};
+dir=${dir:-'/tmp'}
+dir="$(echo $dir | sed 's![^/]$!&/!')";
+
+file_name="${filename}_$(date +%Y_%m_%d).tar.gz";
 
 if [ "$#" -gt 0 ]; then
-	git archive --format tar.gz -o "$dir$file_name" HEAD "$@";
+	git archive --format tar.gz -o "${dir}${file_name}" HEAD "$@";
 else
-	git archive --format tar.gz -o "$dir$file_name" HEAD
+	git archive --format tar.gz -o "${dir}${file_name}" HEAD
 fi
 
 echo "$dir$file_name"
+
+exit 0;
