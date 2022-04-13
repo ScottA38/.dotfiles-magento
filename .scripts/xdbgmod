@@ -1,19 +1,22 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 cmd=$1
-ver=$2
+controller="sudo systemctl";
 
 if [ $cmd != "en" -a $cmd != "dis" ]; then
 	echo "Did not get a valid command as 1st arg: 'en' or 'dis' are allowed";
 	exit 1;
 fi
 
-path="/etc/php/$ver/mods-available/xdebug.ini"
-
-if [ $cmd == "en" -a -f "$path.dis" ]; then
-	sudo mv $path{.dis,};
-	sudo systemctl restart "php$ver-fpm"
-elif [ $cmd == "dis" -a -f $path ]; then
-	sudo mv $path{,.dis};
-	sudo systemctl restart "php$ver-fpm"
+if [[ $OSTYPE =~ "darwin" ]]; then
+  controller="brew services";
 fi
+
+if [ $cmd == "en" ]; then
+  php -i | ggrep -oP "\/([\w\-\.]+\/)+[\w\-\.]+.ini" | xargs gsed -i 's/^;zend_extension="xdebug.so"/zend_extension="xdebug.so"/'
+else
+  php -i | ggrep -oP "\/([\w\-\.]+\/)+[\w\-\.]+.ini" | xargs gsed -i 's/^zend_extension="xdebug.so"/;zend_extension="xdebug.so"/'
+fi
+
+echo "Config changed: run '$controller restart [php-version]' (copied to clipboard)";
+echo "$controller restart" | pbcopy

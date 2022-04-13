@@ -10,9 +10,11 @@
 !m2-configs/
 !githooks/
 !/.gitmodules
-!.scripts/
+!/.scripts/
+!/.scripts/*
 .scripts/submodules
 .scripts/.zcompdump
+.scripts/.zsh_history
 !.groovyscripts/
 !submodules/*
 !agkozak-zsh-prompt

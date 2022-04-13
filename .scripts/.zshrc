@@ -46,6 +46,13 @@ bindkey  "^[[3~"  delete-char
 autoload -U compinit
 compinit
 
+#setting directory shortcuts
+hash -d comm="~/Tech/commissions"
+hash -d fbf="~/Tech/fbf"
+hash -d etc-brew="/usr/local/etc"
+hash -d var-brew="/usr/local/var"
+hash -d log-nginx="/usr/local/var/log/nginx"
+
 ###STOLEN FROM UBUNTU
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -62,17 +69,20 @@ fi
 
 #Setting colourised ls output
 export CLICOLOR=1
-LS_COLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
+LSCOLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 zstyle ':completion:*' list-colors 'di=1;36:ln=1;35:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
-# Adding parts of path manually
-# Setting PATH for Python 3.6 The original version is saved in .bash_profile.pysave
-PATH="/usr/local/opt/ruby/bin:/usr/local/:~/.scripts:$HOME/.rvm/bin:$PATH"
+#Define items that should be added to PATH
+local path_additions=("/usr/local/Cellar/diffutils/3.8/bin" "/usr/local/Cellar/grep/3.7/bin" "/usr/local/opt/sqlite/bin" "/usr/local/opt/ruby/bin" "/usr/local/opt/bison/bin" "/usr/local" "~/.scripts" "~/.rvm/bin" "~/.composer/vendor/bin" "/usr/local/var/homebrew/linked/elasticsearch-full/bin")
 
-case ":$PATH:" in
-  *":$new_path:"*) :;; # already there
-  *) PATH="$new_path:$PATH";; # or PATH="$PATH:$new_entry"
-esac
+#Iterate items to add and add if not already found
+for a in "${path_additions[@]}"
+do
+  echo $PATH | grep -q $a
+  if [[ $? -ne 0 ]]; then
+    PATH="$a:$PATH"
+  fi
+done
 
 #function to unpack all files in a child directory of the cwd to the cwd and then remove the directory
 collapse(){
@@ -110,8 +120,7 @@ fi
 autoload bashcompinit
 bashcompinit
 
-if [ -z $INITIAL_LOGIN ]
-then
+if [[ -z $INITIAL_LOGIN  && -f ~/.startup ]]; then
 	export INITIAL_LOGIN=1;
 	. ~/.startup;
 fi

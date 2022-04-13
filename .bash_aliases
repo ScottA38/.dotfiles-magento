@@ -8,6 +8,8 @@ alias t30="tail -fn 30"
 
 alias wgrep="grep -nA 3 -B 3"
 
+alias 1grep="grep -nm1"
+
 alias cpv="rsync --progress"
 
 alias quote-words="sed 's/[^[:space:],]\+/\"&\"/g'"
@@ -16,7 +18,7 @@ alias pew="gunzip"
 
 #mysql shortcuts
 
-alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g'"
+alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g' | more +G"
 
 alias mysqllocal="mysql --defaults-group-suffix='local'"
 alias mysqldev="mysql --defaults-group-suffix='dev'"
@@ -56,7 +58,7 @@ alias gs="git status"
 
 #docker shortcuts
 
-alias containernames='docker ps --format "{{.Names}} \t@\t{{.Ports}}:\t\t\t{{.Status}}"'
+alias containernames='docker ps --format "table {{.Names}}\t@\t{{.Ports}}\t({{.ID}}):\t{{.Status}}"'
 
 alias rmdockerimgs='docker rm -vf $(docker ps -a -q)'
 
@@ -74,3 +76,7 @@ fi
 
 #stupid overrides
 alias magerun="/usr/local/bin/n98-magerun2-3.2.0.phar"
+
+#PHP overrides
+
+alias php72="/usr/local/Cellar/valet-php@7.2/7.2.34_4/bin/php"
