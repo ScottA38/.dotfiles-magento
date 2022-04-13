@@ -1,0 +1,6 @@
+[submodule "agkozak-zsh-prompt"]
+	path = .scripts/submodules/agkozak-zsh-prompt
+	url = https://github.com/agkozak/agkozak-zsh-prompt.git
+[submodule "submodules"]
+	path = submodules
+	url = git@github.com:agkozak/agkozak-zsh-prompt.git

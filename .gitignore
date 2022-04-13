@@ -1,5 +1,5 @@
 #.dotfiles-magento repo
-/*
+*
 
 !/.gitignore
 !/.gitconfig
@@ -9,7 +9,10 @@
 !.scandipwa.bash_aliases
 !m2-configs/
 !githooks/
+!/.gitmodules
 !.scripts/
 .scripts/submodules
 .scripts/.zcompdump
 !.groovyscripts/
+!submodules/*
+!agkozak-zsh-prompt

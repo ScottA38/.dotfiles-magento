@@ -11,6 +11,8 @@
 	chp=cherry-pick
 	doge=log --decorate --oneline --graph --all
 	rsthrd=reset --hard HEAD
+  pushupst=push --set-upstream
 
 [core]
 	autocrlf = false
+	editor = vim
