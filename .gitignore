@@ -5,7 +5,7 @@
 !/.gitconfig
 !/.bash_profile
 !/.bash_aliases
-!/.bash_startup
+!/.zshrc
 !.scandipwa.bash_aliases
 !m2-configs/
 !githooks/
