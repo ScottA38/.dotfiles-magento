@@ -1,6 +1,7 @@
 #.dotfiles-magento repo
 /*
 
+!/bin/
 !/.gitignore
 !/.gitconfig
 !/.bash_profile
