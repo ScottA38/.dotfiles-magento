@@ -11,7 +11,8 @@
 	chp=cherry-pick
 	doge=log --decorate --oneline --graph --all
 	rsthrd=reset --hard HEAD
-  pushupst=push --set-upstream
+	pushupst=push --set-upstream
+	remv=remote -v
 
 [core]
 	autocrlf = false

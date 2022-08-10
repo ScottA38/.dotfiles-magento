@@ -1,6 +1,7 @@
 #Set prompt library
-source $ZDOTDIR/submodules/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+source $ZDOTDIR/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 source $ZDOTDIR/.zsh_functions
+source /etc/profile.d/rvm.sh
 
 # Set prompt config
 AGKOZAK_MULTILINE=0
@@ -127,4 +128,4 @@ fi
 
 
 # Add init line for rvm
-. ~/.rvm/scripts/rvm
+#. ~/.rvm/scripts/rvm
