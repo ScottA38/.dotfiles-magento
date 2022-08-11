@@ -1,0 +1,109 @@
+#!/usr/bin/env python3
+
+import requests
+from requests.auth import HTTPBasicAuth
+import os
+import os.path as path
+from git import Repo
+from getpass import getpass
+import argparse
+import pprint as pp
+from sys import argv
+import json
+
+def setup_dir(args, url):
+    """Creates a directory and intialises a new git repository inside of that new directory with a remote supplied by argument"""
+    try:
+        #print(args.make)
+        os.mkdir(args.repository)
+        bare = Repo.init(path.join(os.getcwd(), args.make, '.git'), bare=True)
+        bare.create_remote('origin', url)
+    except:
+        raise Exception()
+
+def new_repository(args, pat):
+    """Use POST request to make a new Github repository using supplied parameters in 'args'"""
+    return requests.post('https://api.github.com/user/repos', \
+    auth=HTTPBasicAuth(args.username, pat), \
+    json={"name": "{}".format(args.repository), "private": "{}".format(args.private)}, \
+    timeout=5)
+
+def new_gist(args, pat):
+    """Make a new gist by parsing current directory"""
+    #get contents of all files in the specified directory as Python dict
+    files = parse_dir()
+    return requests.post('https://api.github.com/gists', \
+    auth=HTTPBasicAuth(args.username, pat), \
+    json={"private": "{}".format(args.private), "files": "{}".format(json.dumps(files))}, \
+    timeout=5)
+
+def parse_dir(dir=os.getcwd()):
+    """Function to inspect all files and return a dict of the file names and content"""
+    files_json = {}
+    try:
+        for file in os.listdir(dir):
+            if path.splitext(file)[1] in [".txt", ".md"] and not (file[0] == "." or path.isdir(file)):
+                with open(f"{dir}/{file}", "r") as to_read:
+                    files_json[file] = { "content": to_read.read() }
+        return files_json
+    except Exception as e:
+        print(f"Failed on ${file}: ${str(e)}")
+
+def make_repo(args):
+    try:
+        pat = None
+        new_repo_req = None
+        expanded_path = path.expanduser(args.secrets)
+
+        with open(expanded_path) as secrets:
+            pat = json.load(secrets)['makerepo']
+
+        if args.gist:
+            new_repo_req = new_gist(args, pat)
+        else:
+            new_repo_req = new_repository(args, pat)
+
+        # success case, repository is created and the URL of this repository is returned
+        if new_repo_req.status_code == 201:
+            return new_repo_req.json()
+        else:
+            raise requests.exceptions.RequestException()
+    except requests.exceptions.ConnectionError as err:
+        print("An error occurred when trying to connect github.")
+
+        return False
+    except requests.exceptions.RequestException:
+        print("Failed, HTTP code: {}\nMessages:\n{}".format(new_repo_req.status_code, new_repo_req.json()["message"]))
+        if "errors" in new_repo_req.json().keys():
+            for error in new_repo_req.json()["errors"]:
+                print(error["message"])
+
+        return False
+    except KeyError:
+        print("Could not identify key 'makerepo' in secrets file (should be json, should contain 'Personal Access Token' as value)")
+
+        return False
+
+
+parser = argparse.ArgumentParser(description='Create a new repo on a supplied (or default) github account')
+parser.add_argument('repository', help="The name of the repo to be created")
+parser.add_argument("--version", action="version", version='%(prog)s 1.1')
+parser.add_argument('-U', '--user', default="ScottA38", metavar="username", dest="username", help="The username of the GitHub account to store a repository to")
+parser.add_argument('-p', '--private', dest="private", default= False, action='store_true', help="Flag that the created repository should be a private repository")
+parser.add_argument('-m', '--make', dest="make", default= False, action='store_true', help="Whether or not the user wants to create a subdirectory with the repo name")
+parser.add_argument('-G', '--gist', default=False, action='store_true', help="Whether or not the user intends to make a gist or a Github repository")
+parser.add_argument('-S', '--secrets-file', default="~/.secrets.json", metavar="secrets_file", dest="secrets", help="Path to secrets file containing json file with Github Personal Access Token in json format")
+args = parser.parse_args()
+
+URL = ""
+output_fields=['name', 'ssh_url', 'html_url']
+
+response = make_repo(args)
+
+if (response):
+    for field in output_fields:
+        print(f'{field}: {response[field]}')
+else:
+    raise Exception("makerepo: Failed");
+if args.make and not args.gist:
+    setup_dir(args, URL)
