@@ -10,8 +10,8 @@
 !m2-configs/
 !githooks/
 !/.gitmodules
-!/.scripts/
-!/.scripts/*
+!/bin/
+!/bin/*
 .scripts/submodules
 .scripts/.zcompdump
 .scripts/.zsh_history

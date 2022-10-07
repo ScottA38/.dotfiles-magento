@@ -16,6 +16,8 @@ alias quote-words="sed 's/[^[:space:],]\+/\"&\"/g'"
 
 alias pew="gunzip"
 
+alias php2json="tr \"[]\" \"{}\" | tr \"''\" '\"\"' | sed \"s/=>/:/g\""
+
 #mysql shortcuts
 
 alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g' | more +G"
@@ -23,6 +25,8 @@ alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g' | more +G"
 alias mysqllocal="mysql --defaults-group-suffix='local'"
 alias mysqldev="mysql --defaults-group-suffix='dev'"
 alias mysqlstg="mysql --defaults-group-suffix='stg'"
+
+alias mysqldump-strip-data="perl -0777 -pe 's/LOCK TABLES.*?UNLOCK TABLES;//igs' > ~/Documents/dumps/ddev_schema_2022-09-29.sql"
 
 #ssh shortcuts
 

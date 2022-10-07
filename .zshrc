@@ -74,7 +74,7 @@ LSCOLORS='no=00;37:fi=00:di=00;33:ln=04;36:pi=40;33:so=01;35:bd=40;33;01:'
 zstyle ':completion:*' list-colors 'di=1;36:ln=1;35:so=1;31:pi=1;33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
 #Define items that should be added to PATH
-local path_additions=("/usr/local/Cellar/diffutils/3.8/bin" "/usr/local/Cellar/grep/3.7/bin" "/usr/local/opt/sqlite/bin" "/usr/local/opt/ruby/bin" "/usr/local/opt/bison/bin" "/usr/local" "~/.scripts" "~/.rvm/bin" "~/.composer/vendor/bin" "/usr/local/var/homebrew/linked/elasticsearch-full/bin")
+local path_additions=("/usr/local/Cellar/diffutils/3.8/bin" "/usr/local/Cellar/grep/3.7/bin" "/usr/local/opt/sqlite/bin" "/usr/local/opt/ruby/bin" "/usr/local/opt/bison/bin" "/usr/local" "${ZDOTDIR}/bin" "~/.rvm/bin" "~/.composer/vendor/bin" "/usr/local/var/homebrew/linked/elasticsearch-full/bin")
 
 #Iterate items to add and add if not already found
 for a in "${path_additions[@]}"
@@ -114,7 +114,9 @@ if [ -f ~/.vars ]; then
 	. ~/.vars;
 fi
 
-if [ -f ~/.bash_aliases ]; then
+if [ -f $ZDOTDIR/.bash_aliases ]; then
+	. $ZDOTDIR/.bash_aliases;
+elif [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases;
 fi
 
