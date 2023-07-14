@@ -18,6 +18,10 @@ alias pew="gunzip"
 
 alias php2json="tr \"[]\" \"{}\" | tr \"''\" '\"\"' | sed \"s/=>/:/g\""
 
+alias catname="tail -n +1"
+
+alias unixtime="date +%s"
+
 #mysql shortcuts
 
 alias mysqlhist="cat ~/.mysql_history | sed 's+\\\\040+ +g' | more +G"

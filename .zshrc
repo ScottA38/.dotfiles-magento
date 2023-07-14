@@ -1,7 +1,8 @@
 #Set prompt library
-source $ZDOTDIR/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
+#source $ZDOTDIR/agkozak-zsh-prompt/agkozak-zsh-prompt.plugin.zsh
 source $ZDOTDIR/.zsh_functions
-source /etc/profile.d/rvm.sh
+fpath=( $ZDOTDIR/.zsh_functions "${fpath[@]}" )
+#source /etc/profile.d/rvm.sh
 
 # Set prompt config
 AGKOZAK_MULTILINE=0
@@ -123,6 +124,8 @@ fi
 autoload bashcompinit
 bashcompinit
 
+autoload -Uz ${fpath[1]}/*(:t)
+
 if [[ -z $INITIAL_LOGIN  && -f ~/.startup ]]; then
 	export INITIAL_LOGIN=1;
 	. ~/.startup;
@@ -131,3 +134,13 @@ fi
 
 # Add init line for rvm
 #. ~/.rvm/scripts/rvm
+
+# Add direnv hook
+eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
+
+
+#pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

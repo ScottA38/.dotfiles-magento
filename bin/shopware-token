@@ -1,0 +1,11 @@
+resp=$(curl --request POST --url http://localhost:8000/api/oauth/token --header 'Accept: application/json' --header 'Authorization: ' --header 'Content-Type: application/json' --data '{
+  "grant_type": "password", "client_id": "administration", "scopes": "write", "username": "admin", "password": "shopware"
+}');
+token=$(echo $resp | jq '.access_token');
+
+if [[ $token -eq "null" ]]; then
+	echo $resp | jq 'del(.errors[].meta)';
+	exit 1;
+fi
+
+echo $token;
