@@ -1,14 +1,3 @@
 #.dotfiles-magento repo
-/*
-
-!/bin/
-!/.gitignore
-!/.gitconfig
-!/.bash_profile
-!/.bash_aliases
-!/.bash_startup
-!.scandipwa.bash_aliases
-!m2-configs/
-!githooks/
-!.scripts/
-!.groovyscripts/
+node_modules
+nanorc/

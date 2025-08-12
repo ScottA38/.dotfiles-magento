@@ -1,0 +1,14 @@
+{
+  "name": "dotfiles",
+  "version": "1.0.0",
+  "description": "A collection of scripts which help the every day Linux user, typically PHP developer Linux user",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "srmes",
+  "license": "ISC",
+  "devDependencies": {
+    "grunt": "^1.6.1"
+  }
+}
