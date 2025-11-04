@@ -1,0 +1,75 @@
+typeset -U path cdpath fpath manpath
+for profile in ${(z)NIX_PROFILES}; do
+  fpath+=($profile/share/zsh/site-functions $profile/share/zsh/$ZSH_VERSION/functions $profile/share/zsh/vendor-completions)
+done
+
+HELPDIR="/run/current-system/sw/share/zsh/$ZSH_VERSION/help"
+
+autoload -U compinit && compinit
+source /run/current-system/etc/zsh-plugins/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+
+unalias run-help
+autoload run-help
+
+# History options should be set in .zshrc and after oh-my-zsh sourcing.
+# See https://github.com/nix-community/home-manager/issues/177.
+HISTSIZE="10000"
+SAVEHIST="10000"
+
+HISTFILE="/Users/srmes/.local/share/zsh/history"
+mkdir -p "$(dirname "$HISTFILE")"
+
+setopt HIST_FCNTL_LOCK
+unsetopt APPEND_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+unsetopt HIST_SAVE_NO_DUPS
+unsetopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+
+
+if [ -e "$HOME/.env" ]; then
+  source "$HOME/.env"
+fi
+
+if [[ $TERM != "dumb" ]]; then
+  eval "$(starship init zsh)"
+fi
+
+eval "$(direnv hook zsh)"
+
+if [ -e "$HOME/.env" ]; then
+  source "$HOME/.env"
+fi
+
+ssh-add --apple-load-keychain 2>/dev/null || true
+
+alias -- darwin-sw='sudo darwin-rebuild switch --flake'
+alias -- h-files='tail -n +1'
+alias -- la='ls -la'
+alias -- recents='find ~/Downloads/ -mtime -1'
+alias -- rgrep='grep -Rin'
+
+# Named Directory Hashes
+hash -d dev="$HOME/dev"
+hash -d nix="$HOME/.config/nix"
+hash -d projects="$HOME/Projects"
+hash -d sw-apps="./custom/apps/"
+hash -d sw-plugins="./custom/plugins/"
+
+source /run/current-system/etc/zsh-plugins/zsh-syntax-highlighting.zsh
+ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
+
+
+export PATH="$HOME/.nix-profile/bin:$PATH"
+export PATH="/run/current-system/sw/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/local/bin:$PATH"
+
+export MANPAGER="nvim +Man!"
+
+

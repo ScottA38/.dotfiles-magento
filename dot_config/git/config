@@ -1,0 +1,20 @@
+[alias]
+	amen = "commit --amend --no-edit"
+	remv = "remote -v"
+	s = "status"
+
+[filter "lfs"]
+	clean = "git-lfs clean -- %f"
+	process = "git-lfs filter-process"
+	required = true
+	smudge = "git-lfs smudge -- %f"
+
+[github]
+	user = "srmes"
+
+[init]
+	defaultBranch = "main"
+
+[user]
+	email = "simple.scott.94@googlemail.com"
+	name = "ScottA38"
