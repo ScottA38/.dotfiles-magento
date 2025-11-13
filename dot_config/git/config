@@ -2,6 +2,7 @@
 	amen = "commit --amend --no-edit"
 	remv = "remote -v"
 	s = "status"
+  stgdiff = "diff --cached"
 
 [filter "lfs"]
 	clean = "git-lfs clean -- %f"
@@ -12,9 +13,18 @@
 [github]
 	user = "srmes"
 
+[commit]
+  gpgsign = "true"
+
+[tag]
+  gpgsign = "true"
+
 [init]
 	defaultBranch = "main"
 
 [user]
 	email = "simple.scott.94@googlemail.com"
 	name = "ScottA38"
+	signingkey = 7120B5642050183D43A215C6A0087ADDF4360D94
+[core]
+	editor = nvim
