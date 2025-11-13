@@ -50,16 +50,19 @@ ssh-add --apple-load-keychain 2>/dev/null || true
 
 alias -- darwin-sw='sudo darwin-rebuild switch --flake'
 alias -- h-files='tail -n +1'
-alias -- la='ls -la'
 alias -- recents='find ~/Downloads/ -mtime -1'
-alias -- rgrep='grep -Rin'
+alias -- ring='grep -Rin'
+alias -- lal='ls -al'
+alias -- gh-remote='gh repo list --json sshUrl | jq ".[].sshUrl"'
 
 # Named Directory Hashes
 hash -d dev="$HOME/dev"
 hash -d nix="$HOME/.config/nix"
+hash -d nvim="$HOME/.config/nvim"
 hash -d projects="$HOME/Projects"
 hash -d sw-apps="./custom/apps/"
 hash -d sw-plugins="./custom/plugins/"
+hash -d py-projects="$HOME/PycharmProjects/"
 
 source /run/current-system/etc/zsh-plugins/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=()

@@ -1,5 +1,23 @@
 autoload -U zmv
 
+function cat_special() {
+  local glow_bin;
+  local ext;
+  glow_bin="$(command -v glow 2>/dev/null || true)"
+  ext=($1:t:e)
+  
+  if [ -n "$glow_bin" ] && [ "$ext" = "md" ]; then
+    command "$glow_bin" "$@"
+  fi
+
+  command cat "$@"
+  return $?; 
+}
+
 alias zcp='zmv -C'
 alias zln='zmv -L'
+alias cat=cat_special
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
