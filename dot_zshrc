@@ -53,7 +53,7 @@ alias -- h-files='tail -n +1'
 alias -- recents='find ~/Downloads/ -mtime -1'
 alias -- ring='grep -Rin'
 alias -- lal='ls -al'
-alias -- gh-remote='gh repo list --json sshUrl | jq ".[].sshUrl"'
+alias -- chmo="chezmoi"
 
 # Named Directory Hashes
 hash -d dev="$HOME/dev"
@@ -72,6 +72,7 @@ export PATH="$HOME/.nix-profile/bin:$PATH"
 export PATH="/run/current-system/sw/bin:$PATH"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/opt/local/bin:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH" 
 
 export MANPAGER="nvim +Man!"
 
