@@ -1,5 +1,4 @@
 return {
-  { "folke/snacks.nvim" },
   {
     "dawsers/file-history.nvim",
     config = function()

@@ -317,6 +317,8 @@ return {
 
         marksman = {},
 
+        zuban = {},
+
         lua_ls = {
           -- cmd = { ... },
           -- filetypes = { ... },

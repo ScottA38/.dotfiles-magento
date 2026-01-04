@@ -2,7 +2,7 @@ vim.o.swapfile = false
 vim.o.hlsearch = false
 vim.wo.number = true
 vim.o.mouse = "a"
-vim.o.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamed,unnamedplus"
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -14,6 +14,7 @@ vim.o.completeopt = "menuone,noselect"
 vim.o.termguicolors = true
 vim.o.textwidth = 0
 vim.o.splitright = true
+vim.o.shell = "/run/current-system/sw/bin/zsh"
 
 vim.bo.softtabstop = 2
 vim.opt.tabstop = 2
