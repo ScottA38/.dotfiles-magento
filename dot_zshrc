@@ -63,6 +63,7 @@ hash -d projects="$HOME/Projects"
 hash -d sw-apps="./custom/apps/"
 hash -d sw-plugins="./custom/plugins/"
 hash -d py-projects="$HOME/PycharmProjects/"
+hash -d python-bin="$HOME/.config/python-bin/"
 
 source /run/current-system/etc/zsh-plugins/zsh-syntax-highlighting.zsh
 ZSH_HIGHLIGHT_HIGHLIGHTERS+=()
