@@ -1,0 +1,12 @@
+local glow_bin;
+local ext;
+glow_bin="$(command -v glow 2>/dev/null || true)"
+ext=($1:t:e)
+
+if [ -n "$glow_bin" ] && [ "$ext" = "md" ]; then
+    command "$glow_bin" "$@"
+fi
+
+command cat "$@"
+return $?; 
+
