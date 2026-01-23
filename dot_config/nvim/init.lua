@@ -1,8 +1,6 @@
-vim.o.swapfile = false
-vim.o.hlsearch = false
 vim.wo.number = true
 vim.o.mouse = "a"
-vim.o.clipboard = "unnamed,unnamedplus"
+vim.o.clipboard = "unnamedplus"
 vim.o.breakindent = true
 vim.o.undofile = true
 vim.o.ignorecase = true
@@ -107,4 +105,4 @@ for _, config in ipairs(lang_config) do
 end
 
 require "keymaps"
-require("config.lazy")
+require "config.lazy"

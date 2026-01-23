@@ -18,3 +18,10 @@ vim.keymap.set(
   "<cmd>Explore<CR>",
   { desc = "Return to netrw from editing file (or vice-versa)" }
 )
+
+vim.keymap.set(
+  "n",
+  "<leader>nh",
+  "<CR> :noh<CR>",
+  { desc = "Un-highlight hl search matches" }
+)
