@@ -56,6 +56,7 @@ alias -- lal='ls -al'
 alias -- chmo="chezmoi"
 
 # Named Directory Hashes
+hash -d docs="$HOME/Documents/"
 hash -d dev="$HOME/dev"
 hash -d nix="$HOME/.config/nix"
 hash -d nvim="$HOME/.config/nvim"
