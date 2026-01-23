@@ -3,6 +3,7 @@
 	remv = "remote -v"
 	s = "status"
   stgdiff = "diff --cached"
+  stashl = "stash list"
 
 [filter "lfs"]
 	clean = "git-lfs clean -- %f"
@@ -21,6 +22,7 @@
 
 [init]
 	defaultBranch = "main"
+	templateDir = /Users/srmes/.config/git/templates
 
 [user]
 	email = "simple.scott.94@googlemail.com"

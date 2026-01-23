@@ -1,0 +1,8 @@
+# [TYPE]: Short description (50 chars or less)
+
+# Body: More detailed explanatory text if needed. Wrap at 72 chars.
+# Include motivation for the change and contrast with previous behavior.
+
+# Issue: #123
+# Co-authored-by: Name <email@example.com>
+
