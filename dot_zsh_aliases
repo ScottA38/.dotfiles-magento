@@ -1,1 +1,13 @@
-alias ecr-login = "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws"
+#Generic UNIX-like aliases
+alias -- h-files='tail -n +1'
+alias -- recents='find ~/Downloads/ -mtime -1'
+alias -- ring='grep -Rin'
+alias -- lal='ls -al'
+alias -- chcd="chezmoi"
+alias -- ched="chezmoi edit"
+
+# Nix-Darwin-specific aliases
+alias -- darwin-sw='sudo darwin-rebuild switch --flake'
+
+# AWS-specific aliases
+alias -- ecr-login="aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws"

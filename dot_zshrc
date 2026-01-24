@@ -48,13 +48,6 @@ fi
 
 ssh-add --apple-load-keychain 2>/dev/null || true
 
-alias -- darwin-sw='sudo darwin-rebuild switch --flake'
-alias -- h-files='tail -n +1'
-alias -- recents='find ~/Downloads/ -mtime -1'
-alias -- ring='grep -Rin'
-alias -- lal='ls -al'
-alias -- chmo="chezmoi"
-
 # Named Directory Hashes
 hash -d docs="$HOME/Documents/"
 hash -d dev="$HOME/dev"
