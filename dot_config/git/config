@@ -2,8 +2,10 @@
 	amen = "commit --amend --no-edit"
 	remv = "remote -v"
 	s = "status"
+  cma = "commit --amend"
   stgdiff = "diff --cached"
   stashl = "stash list"
+  diffstat = "diff --stat"
 
 [filter "lfs"]
 	clean = "git-lfs clean -- %f"
@@ -13,6 +15,9 @@
 
 [github]
 	user = "srmes"
+
+[push]
+  autoSetupRemote = true
 
 [commit]
   gpgsign = "true"

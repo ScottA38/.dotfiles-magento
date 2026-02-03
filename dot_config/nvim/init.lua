@@ -13,6 +13,7 @@ vim.o.termguicolors = true
 vim.o.textwidth = 0
 vim.o.splitright = true
 vim.o.shell = "/run/current-system/sw/bin/zsh"
+vim.o.shiftwidth = 2
 
 vim.bo.softtabstop = 2
 vim.opt.tabstop = 2
@@ -23,86 +24,88 @@ vim.g.netrw_winsize = 30
 vim.g.netrw_banner = false
 vim.g.netrw_localcopydircmd = "cp -r"
 
-vim.schedule(function() vim.opt.clipboard = "unnamedplus" end)
+vim.schedule(function()
+	vim.opt.clipboard = "unnamedplus"
+end)
 
-vim.filetype.add {
-  extension = {
-    nix = "nix",
-  },
-}
+vim.filetype.add({
+	extension = {
+		nix = "nix",
+	},
+})
 
 local lang_config = {
-  {
-    pattern = "javascript",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "typescript",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "typescriptreact",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "javascriptreact",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "lua",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "nix",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "rust",
-    callback = function()
-      vim.opt_local.tabstop = 4
-      vim.opt_local.shiftwidth = 4
-    end,
-  },
-  {
-    pattern = "toml",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
-  {
-    pattern = "json",
-    callback = function()
-      vim.opt_local.tabstop = 2
-      vim.opt_local.shiftwidth = 2
-    end,
-  },
+	{
+		pattern = "javascript",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "typescript",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "typescriptreact",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "javascriptreact",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "lua",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "nix",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "rust",
+		callback = function()
+			vim.opt_local.tabstop = 4
+			vim.opt_local.shiftwidth = 4
+		end,
+	},
+	{
+		pattern = "toml",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
+	{
+		pattern = "json",
+		callback = function()
+			vim.opt_local.tabstop = 2
+			vim.opt_local.shiftwidth = 2
+		end,
+	},
 }
 
 for _, config in ipairs(lang_config) do
-  vim.api.nvim_create_autocmd({ "FileType" }, {
-    pattern = config.pattern,
-    callback = config.callback,
-  })
+	vim.api.nvim_create_autocmd({ "FileType" }, {
+		pattern = config.pattern,
+		callback = config.callback,
+	})
 end
 
-require "keymaps"
-require "config.lazy"
+require("keymaps")
+require("config.lazy")
