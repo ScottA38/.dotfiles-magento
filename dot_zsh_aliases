@@ -6,6 +6,9 @@ alias -- lal='ls -al'
 alias -- chcd="chezmoi"
 alias -- ched="chezmoi edit"
 
+alias -- boots-n-cats="tail -n +1"
+alias -- moggy="magick mogrify -format"
+
 # Nix-Darwin-specific aliases
 alias -- darwin-sw='sudo darwin-rebuild switch --flake'
 

@@ -1,5 +1,10 @@
 autoload -U zmv
 
+if [[ -x "$(which ollama)" ]]; then
+  nohup ollama serve > /tmp/ollama.log 2>&1 &
+  export OLLAMA_PID="$_"
+fi
+
 function cat_special() {
   local glow_bin;
   local ext;

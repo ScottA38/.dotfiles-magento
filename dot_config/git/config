@@ -22,6 +22,9 @@
 [commit]
   gpgsign = "true"
 
+[stash]
+  showIncludeUntracked = "true"
+
 [tag]
   gpgsign = "true"
 
