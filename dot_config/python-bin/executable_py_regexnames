@@ -1,0 +1,35 @@
+#!/Users/srmes/.config/python-bin/bin/python
+
+import os
+from sys import argv
+import sys
+import re
+
+try:
+    file_arg = argv[1]
+except IndexError:
+    print("Argument at position 1 must be a valid directory filepath", file=sys.stderr)
+    exit(1)
+
+if not os.path.isdir(file_arg):
+    print(f"Argument {file_arg} is not a directory, please supply a directory name only", file=sys.stderr)
+    exit(2)
+
+try:
+    regex_arg = argv[2]
+    statement =  re.compile(regex_arg)
+except IndexError:
+    print("Argument at position 2 must be a coherent regex string", file=sys.stderr)
+    exit(3)
+
+files = [x for x in os.listdir(file_arg) if statement.match(x)]
+
+for file_name in os.listdir(file_arg):
+    result = statement.search(file_name)
+    if result:
+        groups = result.group()
+        # print(f"Matched {file_name}")
+        print(result.group(0))
+        # for group in groups:
+        #     print(group)
+

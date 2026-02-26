@@ -1,0 +1,20 @@
+#!/Users/srmes/.config/python-bin/bin/python
+
+import pdfplumber
+from sys import argv
+
+pdf_name = None
+out_text = ""
+
+try:
+    pdf_name = argv[1]
+except IndexError:
+    print("No PDF filepath supplied!")
+    exit(1)
+
+with pdfplumber.open(pdf_name) as pdf:
+    for page in pdf.pages:
+        out_text += page.get_text()
+
+print(page.get_text())
+    

@@ -1,0 +1,24 @@
+#!/Users/srmes/.config/python-bin/bin/python
+
+from pdfrw import PdfReader, PdfWriter
+import os
+from sys import argv
+import sys
+from datetime import datetime
+
+try:
+    file_arg = argv[1]
+except IndexError:
+    print("No PDF filepath supplied!", file=sys.stderr)
+    exit(1)
+
+if not os.path.isdir(file_arg):
+    print(f"Argument {file_arg} is not a directory, please supply a directory name only", file=sys.stderr)
+    exit(2)
+
+writer = PdfWriter() 
+files = [x for x in os.listdir(file_arg) if x.endswith('.pdf')]
+for fname in sorted(files):
+  writer.addpages(PdfReader(os.path.join(file_arg, fname)).pages)
+ 
+writer.write(f"merged_pdf_{datetime.now()}.pdf")

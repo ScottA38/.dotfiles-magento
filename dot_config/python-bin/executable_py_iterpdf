@@ -1,0 +1,42 @@
+#!/Users/srmes/.config/python-bin/bin/python
+
+# TODO: this file is incomplete and needs to be converted to iterate an external function specified by argv
+
+import pdfplumber
+from sys import argv
+import os
+from os import path
+from glob import glob
+import json
+
+try:
+    file_arg = argv[1]
+    print(file_arg)
+except IndexError:
+    print("No PDF filepath supplied!")
+    exit(1)
+
+# if not isset(argv[2]):
+#    print(f"Arg 2 must use the format [file_name].[func_name]")
+
+glob_path = path.join(file_arg, "*.pdf")
+found_pdfs = glob(glob_path)
+
+if not path.isdir(file_arg):
+    print(f"Argument {file_arg} is not a directory, please supply a directory name only")
+    exit(2)
+
+if not len(found_pdfs):
+    print(f"No PDFs found within supplied directory {file_arg}, please check the path and try again")
+    exit(3)
+
+pdf_data = []
+
+for pdf_path in found_pdfs:
+    with pdfplumber.open(pdf_path) as segment_pdf:
+        for page in segment_pdf.pages:
+            pdf_data.append(page.extract_tables()) 
+
+with open(path.join(os.getcwd(), "concat.json"), "w") as outfile:
+   outfile.write(json.dumps(pdf_data)) 
+
