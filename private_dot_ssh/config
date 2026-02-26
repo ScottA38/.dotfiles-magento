@@ -1,0 +1,7 @@
+Host stage.hs
+  HostName 3.8.125.85
+  User bitnami
+
+Host stage.hs.1
+  HostName 18.170.227.252
+  User bitnami
