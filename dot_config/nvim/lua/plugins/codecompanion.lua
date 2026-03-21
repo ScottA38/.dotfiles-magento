@@ -11,7 +11,7 @@ return {
 					return require("codecompanion.adapters").extend("ollama", {
 						schema = {
 							model = {
-								default = "deepseek-coder:latest",
+								default = "minimax-m2.7:cloud",
 							},
 						},
 					})
