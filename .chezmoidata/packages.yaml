@@ -1,4 +1,10 @@
 packages:
   darwin:
     npm:
-    -  
+    - corepack
+    - "@aws-amplify/cli"
+    - "@google/jules"
+    - mcp-server-gsc
+    - zubeid-youtube-mcp-server
+    # - eslint
+    # - prettier
